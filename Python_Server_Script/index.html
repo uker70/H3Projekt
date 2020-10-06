@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>AngularFrontend</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+
+  <video id="video" controls src="" width="500" height="300"></video>
+
+  <!-- <app-root></app-root> -->
+</body>
+
+</html>
+
+<script>
+var x = 2;
+
+var videoSrc = 'http://172.16.2.36:8080/hls/cam0_proc.m3u8';
+var video = document.getElementById('video');
+var hls = new Hls();
+
+function changeVideoSrc(src) {
+  videoSrc = src;
+
+  if(Hls.isSupported()) {
+    hls.loadSource(src);
+    hls.attachMedia(video);
+
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    video.src = src;
+  }
+  
+
+}
+
+
+  window.addEventListener('load', (event) => {
+    
+    video = document.getElementById('video');
+
+    if (Hls.isSupported()) {
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        console.log('hls manifest parsed');
+        video.play();
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = videoSrc;
+      video.addEventListener('loadedmetadata', function () {
+        video.play();
+      });
+    }
+  })
+
+</script>
