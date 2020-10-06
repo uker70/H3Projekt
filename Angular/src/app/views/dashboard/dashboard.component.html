@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <p>Indkommende Incidents (Opdateres Live)</p>
+        </div>
+        <div class="card-body">
+          <p>CASE #1</p>
+          <p>CASE #2</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-header">
+          <div class="form-group">
+            <label for="camerafeed">Select camera feed</label>
+          <select class="form-control" name="camerafeed" id="camerafeed">
+            <option value="0">CAMERA-1</option>
+            <option value="1">CAMERA-2</option>
+            <option value="3">CAMERA-3</option>
+          </select>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- <img src="assets/camera-feed.jpg" alt="" width="500" height="300"> -->
+          <video id="video" controls src="" width="500" height="300"></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<button class="btn btn-primary" (click)="testerMethod()">Tester Method</button>
+
+<!-- <app-ngbd-modal></app-ngbd-modal>
+
+<app-edit-incident-modal></app-edit-incident-modal>
+ -->
+

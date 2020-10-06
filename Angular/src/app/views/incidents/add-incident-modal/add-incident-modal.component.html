@@ -1,0 +1,65 @@
+<button class="btn btn-primary m-1" (click)="open(content)">
+  <fa-icon [icon]="faPlus"></fa-icon>
+  Opret Ny
+</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Opret Nyt Incident</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="description">Navn</label>
+        <input type="text" name="description" [(ngModel)]="incident.description" [value]="incident.description" placeholder="Sag navn..." id="description" class="form-control">
+      </div>
+      <!-- <div class="form-group">
+        <label for="status">Status på sag:</label>
+        <select class="form-control" name="status" id="status">
+          <option *ngFor="let status of availableIncidentStatuses" [value]="status.id">{{ status.name }}</option>
+        </select>
+      </div> -->
+      <div class="form-group">
+        <label for="area">Lokation</label>
+        <select name="location" [(ngModel)]="incident.location.areaName"  id="location" class="form-control">
+          <option *ngFor="let location of availableLocations" [value]="location.areaName">{{ location.areaName }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="incidentDate">Dato</label>
+        <input class="form-control" type="datetime-local" [(ngModel)]="incident.incidentDate" [value]="incident.incidentDate" name="incidentDate" id="incidentDate">
+      </div>
+
+      <!-- Hidden input because image is not implemented. -->
+      <div class="d-none">
+        <div class="form-group">
+          <label for="img">Image</label>
+          <!-- <input type="file" name="img" id="img" class="form-control"> -->
+          <input type="text" name="img" id="img" class="form-control" [(ngModel)]="incident.image" [value]="incident.image">
+        </div>
+      </div>
+
+      <!-- Hidden input because percentage is not implemented. -->
+      <div class="d-none">
+        <div class="form-group">
+          <label for="percentage">Procent</label>
+          <input type="text" name="percentage" id="percentage" class="form-control" [(ngModel)]="incident.percentage" [value]="incident.percentage">
+        </div>
+      </div>
+
+
+    </div>
+  <div class="modal-footer">
+    <button class="btn btn-secondary" (click)="modal.close('Cancel click')">
+      <fa-icon [icon]="faBan"></fa-icon>
+      Anuller
+    </button>
+    <button type="button" class="btn btn-success" (click)="createAction()">
+      <fa-icon [icon]="faPlus"></fa-icon>
+      Opret
+    </button>
+  </div>
+</ng-template>

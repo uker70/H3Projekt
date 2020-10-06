@@ -1,0 +1,21 @@
+// td {
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   white-space: nowrap;
+//   max-width: 100px;
+// }
+
+.id-td {
+  // max-width: 50px;
+}
+
+.name-td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  // max-width: 50px;
+}
+
+.tools-td {
+  width: 325px !important;
+}

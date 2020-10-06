@@ -1,0 +1,32 @@
+<button class="btn btn-danger mx-1" (click)="open(content)">
+  <fa-icon [icon]="faTrash"></fa-icon>
+  Slet
+</button>
+
+<ng-template #content let-modal>
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Slet Bruger</h4>
+  <button class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span>&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>Er du sikker på du vil slette Bruger med navn:</p>
+  <p>{{ staff.name }} <span>(USERNAME): {{ staff.user.username }}</span></p>
+  <div class="form-group">
+    <label for="confirmation">Venligst bekræft ved at skrive <strong>SLET</strong>:</label>
+    <input autocomplete="off" class="form-control" ngbAutoFocus [value]="confirmation" (keyup)="handleConfirmationKeyup($event)" placeholder="Skriv i dette felt..." type="text" name="confirmation" id="confirmation">
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-secondary" (click)="modal.close('Cancel Click')">
+      <fa-icon [icon]="faBan"></fa-icon>
+      Anuller
+    </button>
+    <button class="btn btn-danger" [disabled]="!isConfirmed()" (click)="deleteAction()">
+      <fa-icon [icon]="faTrash"></fa-icon>
+      Slet
+    </button>
+  </div>
+
+</div>
+</ng-template> 

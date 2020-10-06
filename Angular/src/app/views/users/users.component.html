@@ -1,0 +1,56 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="input-group my-5">
+        <div class="input-group-prepend">
+          <span class="input-group-text dropdown-toggle">
+            <fa-icon [icon]="faFilter"></fa-icon>
+          </span>
+        </div>
+        <input type="text" name="query" id="query" placeholder="Søg efter Navn, brugernavn, rolle med mere..." class="form-control">
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item">Indtast søge kriterier her...</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <app-add-user-modal></app-add-user-modal>
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>#ID</th>
+            <th>Navn</th>
+            <th>Telefon</th>
+            <th>Brugernavn</th>
+            <th>Rolle</th>
+            <th class="text-center">Værktøjer 🛠</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="staff.length === 0">
+            <td colspan="6" class="text-center">No staff found at the moment...</td>
+          </tr>
+          <tr *ngFor="let member of staff">
+            <td>{{ member.id }}</td>
+            <td>{{ member.name }}</td>
+            <td>{{ member.phoneNumber }}</td>
+            <td>{{ member.user.username }}</td>
+            <td>{{ member.user.userLevel | userLevel }} </td>
+            <td class="text-center tools-td">
+              <!-- <button class="btn btn-primary mx-1">Se</button> -->
+              <!-- <button class="btn btn-warning mx-1">Rediger</button> -->
+              <!-- <button class="btn btn-danger mx-1">Slet</button> -->
+              <app-view-user-modal [staff]="member"></app-view-user-modal>
+              <app-edit-user-modal [staff]="member" (saveRequested)="handleSaveModal($event)"></app-edit-user-modal>
+              <app-delete-user-modal [staff]="member" (deleteRequested)="handleDeleteModal($event)"></app-delete-user-modal>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>

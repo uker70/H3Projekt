@@ -1,0 +1,45 @@
+<button class="btn btn-warning mx-1" (click)="open(content)">
+  <fa-icon [icon]="faPencilAlt"></fa-icon>
+  Rediger
+</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Rediger AOBE</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div *ngIf="dataHasBeenLoaded">
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="name">Navn</label>
+        <input type="text" name="na" [(ngModel)]="aobe.name" [value]="aobe.name" placeholder="AOBE navn..." id="name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="ipaddress">IP-Adresse</label>
+        <input type="text" name="ipaddress" id="ipaddress" [value]="aobe.IPAddress" placeholder="AOBE IP-Adresse" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="status">Lokation:</label>
+        <select class="form-control" name="location" id="location">
+          <option *ngFor="let location of availableLocations" [selected]="aobe.location.id == location.id" [value]="location.id">{{ location.areaName }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!dataHasBeenLoaded" class="text-center">
+    <p>Please wait loading ....</p>
+    <img src="assets/loading-icon.gif" class="img-fluid" alt="Loading icon">
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-secondary" (click)="modal.close('Cancel click')">
+      <fa-icon [icon]="faBan"></fa-icon>
+      Anuller
+    </button>
+    <button type="button" class="btn btn-success" (click)="saveAction()">
+      <fa-icon [icon]="faSave"></fa-icon>
+      Gem Ændringer
+    </button>
+  </div>
+</ng-template>

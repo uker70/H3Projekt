@@ -1,0 +1,23 @@
+<button class="btn btn-block btn-danger m-1" (click)="open(content)">
+    <fa-icon [icon]="faMinusCircle"></fa-icon>
+    Deaktiver Profil!
+</button>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Deaktiver Profil</h4>
+        <button class="close" role="button" (click)="modal.dismiss()">
+            <span>&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Er du sikker på du vil deaktivere brugerprofilen:</p>
+        <p>{{ user.name }} ({{ user.user.username }})</p>
+
+        <div class="form-group">
+            <label for="confirmation">Venligst bekræft ved at skrive <strong>DEAKTIVER</strong>:</label>
+            <input type="text" [value]="this.confirmation" (keyup)="handleConfirmationKeyup($event)" ngbAutoFocus name="confirmation" id="confirmation" placeholder="Skriv her..." class="form-control">
+        </div>
+        <button class="btn btn-danger btn-block my-2" [disabled]="!this.isConfirmed()" (click)="deactivateAction()">Deaktiver Nu!</button>
+    </div>
+</ng-template>

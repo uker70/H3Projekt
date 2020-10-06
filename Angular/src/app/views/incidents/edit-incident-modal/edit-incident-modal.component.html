@@ -1,0 +1,48 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Rediger Incident</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div *ngIf="dataHasBeenLoaded">
+    <div class="modal-body">
+      <div class="form-group">
+        <label for="name">Navn</label>
+        <input type="text" name="na" [(ngModel)]="incident.description" [value]="incident.description" placeholder="Sag navn..." id="name" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="status">Status på sag:</label>
+        <select class="form-control" [(ngModel)]="incident.status.id" name="status" id="status">
+          <option *ngFor="let status of availableIncidentStatuses" [selected]="incident.status.id == status.id" [value]="status.id">{{ status.name }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="location">Lokation</label>
+        <select name="location" id="location" [(ngModel)]="incident.location.id" class="form-control">
+          <option *ngFor="let location of availableLocations" [selected]="incident.location.id == location.id" [value]="location.id">{{location.areaName}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!dataHasBeenLoaded" class="text-center">
+    <p>Please wait loading ....</p>
+    <img src="assets/loading-icon.gif" class="img-fluid" alt="Loading icon">
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-secondary" (click)="modal.close('Cancel click')">
+      <fa-icon [icon]="faBan"></fa-icon>
+      Anuller
+    </button>
+    <button type="button" class="btn btn-success" (click)="saveAction()">
+      <fa-icon [icon]="faSave"></fa-icon>
+      Gem Ændringer
+    </button>
+  </div>
+</ng-template>
+
+<button class="btn btn-warning mx-1" (click)="open(content)">
+  <fa-icon [icon]="faPencilAlt"></fa-icon>
+  Rediger
+</button>
+

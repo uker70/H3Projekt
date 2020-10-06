@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card my-2">
+        <div class="card-header">
+          <h1 class="card-title">Brugerprofil</h1>
+        </div>
+        <div class="card-body">
+          <div *ngIf="staffMember">
+            <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" readonly name="name" id="name" [value]="staffMember.name" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" readonly name="phone" id="phone" [value]="staffMember.phoneNumber" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="userLevel">Bruger Rolle:</label>
+                <input type="text" readonly [value]="staffMember.user.userLevel | userLevel" name="userLevel" id="userLevel" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="username">Brugernavn</label>
+                <input type="text" readonly [value]="staffMember.user.username" name="username" id="username" class="form-control">
+              </div>
+  
+              <div class="row">
+                <div class="col-6">
+                  <app-change-password-modal [user]="staffMember"></app-change-password-modal>
+                </div>
+                <div class="col-6">
+                  <!-- <button class="btn btn-danger btn-block">
+                    <fa-icon [icon]="faMinusCircle"></fa-icon>
+                    Deaktiver Profil
+                  </button> -->
+                  <app-deactivate-profile-modal [user]="staffMember"></app-deactivate-profile-modal>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div *ngIf="!staffMember">
+            <p>Loading...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

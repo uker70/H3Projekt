@@ -1,0 +1,22 @@
+.wrapper-row {
+    border: 1px solid lightgray;
+}
+
+.message-nav {
+    border-right: 1px solid lightgray;
+}
+
+textarea {
+    resize: none;
+}
+
+.nav-link {
+    color: #151b1e;
+    border-bottom: 1px solid #e1e6ef;
+    cursor: pointer;
+}
+
+.nav-item {
+    width: calc(100% - 0.25rem);
+}
+

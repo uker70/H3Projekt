@@ -1,0 +1,38 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">View Incident</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" name="name" [value]="incident.description" readonly id="name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="status">Status</label>
+      <input class="form-control" type="text" name="status" id="status" [value]="incident.status.name" readonly>
+    </div>
+    <div class="form-group">
+      <label for="location">Lokation</label>
+      <input type="text" name="location" id="location" [value]="incident.location.areaName" class="form-control" readonly>
+    </div>
+    <div class="form-group">
+      <label for="incidentDate">Dato</label>
+      <input type="text" name="incidentDate" id="incidentDate" [value]="incident.incidentDate" class="form-control" readonly>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Go back click')">
+      <fa-icon [icon]="faAngleDoubleLeft"></fa-icon>
+      Gå tilbage
+    </button>
+  </div>
+</ng-template>
+
+<button class="btn btn-primary mx-1" (click)="open(content)">
+  <fa-icon [icon]="faEye"></fa-icon>
+  Åben
+</button>
+
