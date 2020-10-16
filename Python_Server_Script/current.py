@@ -6,7 +6,7 @@ from imageai.Detection import ObjectDetection
 import os
 import time
 import subprocess
-
+#Hvor er kodekommentarerne henne?
 execution_path = os.getcwd()
 
 detector = ObjectDetection()
